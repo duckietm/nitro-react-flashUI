@@ -117,7 +117,7 @@ export const FloorplanOptionsView: FC<{}> = props =>
         <Column>
             <Flex gap={ 1 }>
                 <Column size={ 5 } gap={ 1 }>
-                    <Text bold>{ LocalizeText('floor.plan.editor.draw.mode') }</Text>
+                    <Text bold variant="black">{ LocalizeText('floor.plan.editor.draw.mode') }</Text>
                     <Flex gap={ 3 }>
                         <Flex gap={ 1 }>
                             <LayoutGridItem itemActive={ (floorAction === FloorAction.SET) } onClick={ event => selectAction(FloorAction.SET) }>
@@ -141,11 +141,11 @@ export const FloorplanOptionsView: FC<{}> = props =>
                     </Flex>
                 </Column>
                 <Column alignItems="center" size={ 4 }>
-                    <Text bold>{ LocalizeText('floor.plan.editor.enter.direction') }</Text>
+                    <Text bold variant="black">{ LocalizeText('floor.plan.editor.enter.direction') }</Text>
                     <i className={ `icon icon-door-direction-${ visualizationSettings.entryPointDir } cursor-pointer` } onClick={ changeDoorDirection } />
                 </Column>
                 <Column size={ 3 }>
-                    <Text bold>{ LocalizeText('floor.editor.wall.height') }</Text>
+                    <Text bold variant="black">{ LocalizeText('floor.editor.wall.height') }</Text>
                     <Flex alignItems="center" gap={ 1 }>
                         <FaCaretLeft className="cursor-pointer fa-icon" onClick={ decreaseWallHeight } />
                         <input type="number" className="form-control form-control-sm quantity-input" value={ visualizationSettings.wallHeight } onChange={ event => onWallHeightChange(event.target.valueAsNumber) } />
@@ -155,7 +155,7 @@ export const FloorplanOptionsView: FC<{}> = props =>
             </Flex>
             <Flex gap={ 1 }>
                 <Column size={ 6 }>
-                    <Text bold>{ LocalizeText('floor.plan.editor.tile.height') }: { floorHeight }</Text>
+                    <Text bold variant="black">{ LocalizeText('floor.plan.editor.tile.height') }: { floorHeight }</Text>
                     <Slider
                         min={ MIN_FLOOR_HEIGHT }
                         max={ MAX_FLOOR_HEIGHT }
@@ -165,7 +165,7 @@ export const FloorplanOptionsView: FC<{}> = props =>
                         renderThumb={ ({ style, ...rest }, state) => <div style={ { backgroundColor: `#${ COLORMAP[state.valueNow.toString(33)] }`, ...style } } { ...rest }>{ state.valueNow }</div> } />
                 </Column>
                 <Column size={ 6 }>
-                    <Text bold>{ LocalizeText('floor.plan.editor.room.options') }</Text>
+                    <Text bold variant="black">{ LocalizeText('floor.plan.editor.room.options') }</Text>
                     <Flex className="align-items-center">
                         <select className="form-control form-control-sm" value={ visualizationSettings.thicknessWall } onChange={ event => onWallThicknessChange(parseInt(event.target.value)) }>
                             <option value={ 0 }>{ LocalizeText('navigator.roomsettings.wall_thickness.thinnest') }</option>
