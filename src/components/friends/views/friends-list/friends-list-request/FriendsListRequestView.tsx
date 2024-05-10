@@ -25,11 +25,11 @@ export const FriendsListRequestView: FC<FriendsListRequestViewProps> = props =>
                 <Column className="position-absolute bottom-0 w-100">
                     <Flex gap={ 1 } className="friend-active-tab" justifyContent="center" alignItems="center">
                         <Column fullWidth className="px-1 mb-1" gap={ 0 }>
-                            <Flex className="volter-button" gap={ 2 } justifyContent="start" onClick={ () => requestResponse(-1, true) } onMouseEnter={ () => setShowHoverText(LocalizeText('friendlist.requests.acceptall')) } onMouseLeave={ () => setShowHoverText('') }>
+                            <Flex className="volter-button text-black" gap={ 2 } justifyContent="start" onClick={ () => requestResponse(-1, true) } onMouseEnter={ () => setShowHoverText(LocalizeText('friendlist.requests.acceptall')) } onMouseLeave={ () => setShowHoverText('') }>
                                 <Base className="nitro-friends-spritesheet icon icon-accept-check mt-1 ms-2" />
                                 <Text className="mt-1">{ LocalizeText('friendlist.requests.acceptall') }</Text>
                             </Flex>
-                            <Flex className="volter-button" gap={ 2 } justifyContent="start" onClick={ () => requestResponse(-1, false) } onMouseEnter={ () => setShowHoverText(LocalizeText('friendlist.requests.dismissall')) } onMouseLeave={ () => setShowHoverText('') }>
+                            <Flex className="volter-button text-black" gap={ 2 } justifyContent="start" onClick={ () => requestResponse(-1, false) } onMouseEnter={ () => setShowHoverText(LocalizeText('friendlist.requests.dismissall')) } onMouseLeave={ () => setShowHoverText('') }>
                                 <Base className="nitro-friends-spritesheet icon icon-decline-x mt-1 ms-2" />
                                 <Text className="mt-1">{ LocalizeText('friendlist.requests.dismissall') }</Text>
                             </Flex>

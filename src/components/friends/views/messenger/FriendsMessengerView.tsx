@@ -12,7 +12,7 @@ export const FriendsMessengerView: FC<{}> = props =>
     const [ lastThreadId, setLastThreadId ] = useState(-1);
     const [ messageText, setMessageText ] = useState('');
     const { visibleThreads = [], activeThread = null, getMessageThread = null, sendMessage = null, setActiveThreadId = null, closeThread = null } = useMessenger();
-    const { simpleAlert = null } = useNotification();
+	const { simpleAlert = null } = useNotification();
     const { report = null } = useHelp();
     const messagesBox = useRef<HTMLDivElement>();
 
@@ -34,8 +34,8 @@ export const FriendsMessengerView: FC<{}> = props =>
 
         send();
     }
-
-    useMessageEvent<FollowFriendFailedEvent>(FollowFriendFailedEvent, event =>
+	
+	useMessageEvent<FollowFriendFailedEvent>(FollowFriendFailedEvent, event =>
     {
         const parser = event.getParser();
 
@@ -149,10 +149,17 @@ export const FriendsMessengerView: FC<{}> = props =>
                                             <LayoutItemCountView count={ thread.unreadCount } /> }
                                     <Flex fullWidth alignItems="center" gap={ 1 }>
                                         <Flex alignItems="center" className="friend-head px-1">
-                                            { (thread.participant.id > 0) &&
-                                                    <LayoutAvatarImageView figure={ thread.participant.figure } headOnly={ true } direction={ 2 } /> }
-                                            { (thread.participant.id <= 0) &&
-                                                    <LayoutBadgeImageView isGroup={ true } badgeCode={ thread.participant.figure } /> }
+                                            <LayoutAvatarImageView figure={
+												thread.participant.id > 0
+												? thread.participant.figure
+												: thread.participant.id <= 0 && thread.participant.figure === 'ADM'
+												? 'ha-3409-1413-70.lg-285-89.ch-3032-1334-109.sh-3016-110.hd-185-1359.ca-3225-110-62.wa-3264-62-62.fa-1206-90.hr-3322-1403'
+												: thread.participant.figure
+											}
+											headOnly={true}
+											direction={thread.participant.id > 0 ? 2 : 3}
+											scale={0.9}
+										/>
                                         </Flex>
                                     </Flex>
                                 </LayoutMessengerGrid>
