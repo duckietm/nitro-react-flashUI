@@ -2,14 +2,16 @@ import { ILinkEventTracker } from '@nitrots/nitro-renderer';
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { AddEventLinkTracker, ChatEntryType, LocalizeText, RemoveLinkEventTracker } from '../../api';
 import { Column, Flex, InfiniteScroll, NitroCardContentView, NitroCardHeaderView, NitroCardView, Text } from '../../common';
-import { useChatHistory } from '../../hooks';
+import { useChatHistory, useOnClickChat } from '../../hooks';
 
 export const ChatHistoryView: FC<{}> = props =>
 {
+	const { chatHistory = [] } = useChatHistory();
     const [ isVisible, setIsVisible ] = useState(false);
+	const { onClickChat = null } = useOnClickChat();
     const [ searchText, setSearchText ] = useState<string>('');
-    const { chatHistory = [] } = useChatHistory();
-    const elementRef = useRef<HTMLDivElement>(null);
+    
+	const elementRef = useRef<HTMLDivElement>(null);
 
     const filteredChatHistory = useMemo(() =>
     {
@@ -63,7 +65,7 @@ export const ChatHistoryView: FC<{}> = props =>
             <Flex gap={ 2 } className="nitro-chat-history">
                 <Column className="chat-history-content h-100">
                     <Column className="h-100">
-                        <InfiniteScroll rows={ filteredChatHistory } estimateSize={ 35 } rowRender={ row =>
+                        <InfiniteScroll rows={ filteredChatHistory } scrollToBottom={ true } rowRender={ row =>
                         {
                             return (
                                 <Flex alignItems="center" className="p-1" gap={ 2 }>
@@ -79,14 +81,14 @@ export const ChatHistoryView: FC<{}> = props =>
                                         </div>
                                         <div className="chat-content">
                                             <b className="username mr-1" dangerouslySetInnerHTML={ { __html: `${ row.name }: ` } } />
-                                            <span className="message" dangerouslySetInnerHTML={ { __html: `${ row.message }` } } />
+                                            <span className="message" dangerouslySetInnerHTML={ { __html: `${ row.message }` } } onClick={ e => onClickChat(e) } />
                                         </div>
                                     </div>
                                 </div> }
                                     { (row.type === ChatEntryType.TYPE_ROOM_INFO) &&
                                 <>
                                     <i className="icon icon-small-room" />
-                                    <Text textBreak wrap grow>{ row.name }</Text>
+                                    <Text textBreak wrap grow variant="white">{ row.name }</Text>
                                 </> }
                                 </Flex>
                             )

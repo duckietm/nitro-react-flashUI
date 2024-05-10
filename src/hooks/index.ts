@@ -17,6 +17,7 @@ export * from './purse';
 export * from './rooms';
 export * from './session';
 export * from './useLocalStorage';
+export * from './useOnClickChat';
 export * from './UseMountEffect';
 export * from './useSharedVisibility';
 export * from './wired';

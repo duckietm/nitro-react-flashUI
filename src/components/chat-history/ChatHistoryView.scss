@@ -3,8 +3,8 @@
     position: absolute;
     padding-right: 20px;
     bottom: 0;
-    top: 0;
-    height: 100%;
+    top: 0.5%;
+    height: 91.4%;
     left: 0;
     width: 400px;
     border-right: 1px solid #000;
@@ -15,11 +15,12 @@
         width: 100%;
         background-color: #2e2e2c4f;
         border-right: 1px solid #3b3933;
+		padding-top: 45px;
         padding-bottom: 60px;
     }
 
     .chat-toggle {
-        background-image: url(@/assets/flash/chathistory/chathistory_toggle.png);
+        background-image: url(@/assets/images/chathistory/chathistory_toggle.png);
         width: 15px;
         height: 63px;
         cursor: pointer;
