@@ -75,16 +75,16 @@ export const NavigatorRoomCreatorView: FC<{}> = props =>
                     <Grid overflow="hidden">
                         <Column size={ 5 } gap={ 1 } overflow="auto" className="px-2 py-1">
                             <Column gap={ 1 }>
-                                <Text gfbold>{ LocalizeText('navigator.createroom.roomnameinfo') }</Text>
+                                <Text bold>{ LocalizeText('navigator.createroom.roomnameinfo') }</Text>
                                 <input type="text" className={ `room-creator-form ${ (!name || (name.length < 3)) ? 'input-error' : '' }` } maxLength={ 60 } onChange={ event => setName(event.target.value) } placeholder={ LocalizeText('navigator.createroom.roomnameinfo') } />
                                 { (!name || (name.length < 3)) && <LayoutInputErrorView text={ LocalizeText('navigator.createroom.nameerr') } /> }
                             </Column>
                             <Column grow gap={ 1 }>
-                                <Text gfbold>{ LocalizeText('navigator.createroom.roomdescinfo') }</Text>
+                                <Text bold>{ LocalizeText('navigator.createroom.roomdescinfo') }</Text>
                                 <textarea className="flex-grow-1 room-creator-form" maxLength={ 255 } onChange={ event => setDescription(event.target.value) } placeholder={ LocalizeText('navigator.createroom.roomdescinfo') } />
                             </Column>
                             <Column gap={ 1 }>
-                                <Text gfbold>{ LocalizeText('navigator.category') }</Text>
+                                <Text bold>{ LocalizeText('navigator.category') }</Text>
                                 <select className="form-select form-select-sm" onChange={ event => setCategory(Number(event.target.value)) }>
                                     { categories && (categories.length > 0) && categories.map(category =>
                                     {
@@ -93,7 +93,7 @@ export const NavigatorRoomCreatorView: FC<{}> = props =>
                                 </select>
                             </Column>
                             <Column gap={ 1 }>
-                                <Text gfbold>{ LocalizeText('navigator.maxvisitors') }</Text>
+                                <Text bold>{ LocalizeText('navigator.maxvisitors') }</Text>
                                 <select className="form-select form-select-sm" onChange={ event => setVisitorsCount(Number(event.target.value)) }>
                                     { maxVisitorsList && maxVisitorsList.map(value =>
                                     {
@@ -102,7 +102,7 @@ export const NavigatorRoomCreatorView: FC<{}> = props =>
                                 </select>
                             </Column>
                             <Column gap={ 1 }>
-                                <Text gfbold>{ LocalizeText('navigator.tradesettings') }</Text>
+                                <Text bold>{ LocalizeText('navigator.tradesettings') }</Text>
                                 <select className="form-select form-select-sm" onChange={ event => setTradesSetting(Number(event.target.value)) }>
                                     <option value="0">{ LocalizeText('navigator.roomsettings.trade_not_allowed') }</option>
                                     <option value="1">{ LocalizeText('navigator.roomsettings.trade_not_with_Controller') }</option>
@@ -110,8 +110,8 @@ export const NavigatorRoomCreatorView: FC<{}> = props =>
                                 </select>
                             </Column>
                             <Flex gap={ 2 }>
-                                <Button fullWidth className="volter-bold-button" onClick={ createRoom }>{ LocalizeText('navigator.createroom.create') }</Button>
-                                <Button fullWidth className="volter-button" onClick={ event => CreateLinkEvent('navigator/close-creator') } >{ LocalizeText('cancel') }</Button>
+                                <Button fullWidth className="text-black volter-bold-button" onClick={ createRoom }>{ LocalizeText('navigator.createroom.create') }</Button>
+                                <Button fullWidth className="text-black volter-button" onClick={ event => CreateLinkEvent('navigator/close-creator') } >{ LocalizeText('cancel') }</Button>
                             </Flex>
                         </Column>
                         <Column size={ 7 } gap={ 1 } overflow="auto">
