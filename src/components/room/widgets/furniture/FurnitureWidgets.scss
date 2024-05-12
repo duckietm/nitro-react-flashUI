@@ -49,12 +49,8 @@
 }
 
 .nitro-external-image-widget {
-
-    border-top: 71px solid rgba(0, 0, 0, 0.5);
-    border-bottom: 71px solid rgba(0, 0, 0, 0.5);
-    border-right: 84px solid rgba(0, 0, 0, 0.5);
-    border-left: 84px solid rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
 
     .nitro-card-header-close {
         cursor: pointer;
@@ -91,6 +87,8 @@
     .picture-preview {
         width: 320px;
         height: 320px;
+		border: 2px solid rgba(255, 255, 255, 0.5);
+		border-radius: 10px;
     }
 
     .center-buttons {
@@ -100,16 +98,40 @@
     .nitro-camera-button-left {
         cursor: pointer;
         background-image: url("@/assets/flash/camera/camera_button_left.png");
-        width: 64px;
-        height: 64px;
+        width: 38px;
+        height: 38px;
+		opacity: 0.5;
+		border: 2px solid rgba(255, 255, 255, 0.5);
+		border-radius: 4px;
     }
 
     .nitro-camera-button-right {
         cursor: pointer;
         background-image: url("@/assets/flash/camera/camera_button_right.png");
-        width: 64px;
-        height: 64px;
+        width: 38px;
+        height: 38px;
+		opacity: 0.5;
+		border: 2px solid rgba(255, 255, 255, 0.5);
+		border-radius: 4px;
     }
+	
+	.nitro-friends-spritesheet {
+		background: url('@/assets/images/friends/friends-spritesheet.png') transparent no-repeat;
+	
+			&.icon-profile {
+				width: 21px; height: 21px;
+				background-position: -5px -36px;
+			}
+		}
+	}
+	
+.profile-container {
+    display: flex;
+    align-items: center;
+}
+
+.username {
+    margin-left: 5px; /* Adjust this value as needed for spacing */
 }
 
 .nitro-gift-opening {

@@ -58,16 +58,18 @@ export const CameraWidgetShowPhotoView: FC<CameraWidgetShowPhotoViewProps> = pro
 
     return (
         <Flex>
-            <Flex center className="picture-preview border border-black" style={ currentImage.w ? { backgroundImage: 'url(' + currentImage.w + ')' } : {} }>
+            <Flex center className="picture-preview border" style={ currentImage.w ? { backgroundImage: 'url(' + currentImage.w + ')' } : {} }>
                 { !currentImage.w && <Text bold>{ LocalizeText('camera.loading') }</Text> }
             </Flex>
             { currentImage.m && currentImage.m.length && <Text center>{ currentImage.m }</Text> }
-            <Flex position="absolute" className="bottom-5 px-2">
-                <Text small>{ new Date(currentImage.t * 1000).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }) }</Text>
+            <Flex position="absolute" className="bottom-2 px-2">
+                <Text variant="light">{ new Date(currentImage.t * 1000).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }) }</Text>
             </Flex>
-            <Flex position="absolute" className="bottom-5 end-5 px-5">
-                <Text pointer small underline onClick={ () => GetUserProfile(Number(getUserData(currentImage.s, Number(currentImage.u), 'id'))) }>{ getUserData(currentImage.s, Number(currentImage.u), 'username') }</Text>
-            </Flex>
+            <Flex position="absolute" className="bottom-2 end-2 px-2 profile-container">
+				<Text className="nitro-friends-spritesheet icon-profile" pointer onClick={() => GetUserProfile(Number(getUserData(currentImage.s, Number(currentImage.u), 'id')))} />
+				<Text className="username" onClick={() => GetUserProfile(Number(getUserData(currentImage.s, Number(currentImage.u), 'id')))}>
+				{getUserData(currentImage.s, Number(currentImage.u), 'username')}</Text>
+			</Flex>
             { (currentPhotos.length > 1) &&
                 <>
                     <Flex position="absolute" className="start-2 center-buttons">
