@@ -1,7 +1,7 @@
 import { FollowFriendFailedEvent, FollowFriendMessageComposer, ILinkEventTracker } from '@nitrots/nitro-renderer';
 import { FC, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { AddEventLinkTracker, GetSessionDataManager, GetUserProfile, LocalizeText, MessengerFollowFriendFailedType, RemoveLinkEventTracker, ReportType, SendMessageComposer } from '../../../../api';
-import { ButtonGroup, Column, Flex, LayoutAvatarImageView, LayoutBadgeImageView, LayoutItemCountView, NitroCardContentView, NitroCardHeaderView, NitroCardView } from '../../../../common';
+import { ButtonGroup, Column, Flex, LayoutAvatarImageView, LayoutBadgeImageView, LayoutItemCountView, NitroCardContentView, NitroCardHeaderView, NitroCardView, Text } from '../../../../common';
 import { LayoutMessengerGrid } from '../../../../common/layout/LayoutMessengerGrid';
 import { useHelp, useMessageEvent, useMessenger, useNotification } from '../../../../hooks';
 import { FriendsMessengerThreadView } from './messenger-thread/FriendsMessengerThreadView';
@@ -144,24 +144,20 @@ export const FriendsMessengerView: FC<{}> = props =>
                         { visibleThreads && (visibleThreads.length > 0) && visibleThreads.map(thread =>
                         {
                             return (
-                                <LayoutMessengerGrid key={ thread.threadId } itemActive={ (activeThread === thread) } onClick={ event => setActiveThreadId(thread.threadId) }>
-                                    { thread.unread &&
-                                            <LayoutItemCountView count={ thread.unreadCount } /> }
-                                    <Flex fullWidth alignItems="center" gap={ 1 }>
-                                        <Flex alignItems="center" className="friend-head px-1">
-                                            <LayoutAvatarImageView figure={
-												thread.participant.id > 0
-												? thread.participant.figure
-												: thread.participant.id <= 0 && thread.participant.figure === 'ADM'
-												? 'ha-3409-1413-70.lg-285-89.ch-3032-1334-109.sh-3016-110.hd-185-1359.ca-3225-110-62.wa-3264-62-62.fa-1206-90.hr-3322-1403'
-												: thread.participant.figure
+                                <LayoutMessengerGrid key={ thread.threadId } itemActive={ (activeThread === thread) } onClick={ event => setActiveThreadId(thread.threadId) }> { 
+									thread.unread && <LayoutItemCountView count={ thread.unreadCount } />
+								}
+									<Flex fullWidth alignItems="center" gap={ 1 }>
+										<Flex alignItems="center" className="friend-head">
+											<LayoutAvatarImageView figure={
+												thread.participant.id > 0 ?
+												thread.participant.figure : thread.participant.id <= 0 && 
+												thread.participant.figure === 'ADM' ?
+												'ha-3409-1413-70.lg-285-89.ch-3032-1334-109.sh-3016-110.hd-185-1359.ca-3225-110-62.wa-3264-62-62.fa-1206-90.hr-3322-1403' : thread.participant.figure 
 											}
-											headOnly={true}
-											direction={thread.participant.id > 0 ? 2 : 3}
-											scale={0.9}
-										/>
-                                        </Flex>
-                                    </Flex>
+										headOnly={true} direction={thread.participant.id > 0 ? 2 : 3} />
+										</Flex>
+									</Flex>
                                 </LayoutMessengerGrid>
                             );
                         }) }
