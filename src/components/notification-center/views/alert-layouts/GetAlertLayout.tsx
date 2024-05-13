@@ -1,21 +1,20 @@
+import React from 'react';
 import { NotificationAlertItem, NotificationAlertType } from '../../../../api';
 import { NitroSystemAlertView } from './NitroSystemAlertView';
 import { NotificationDefaultAlertView } from './NotificationDefaultAlertView';
 import { NotificationSeachAlertView } from './NotificationSearchAlertView';
 
-export const GetAlertLayout = (item: NotificationAlertItem, onClose: () => void) =>
-{
-    if(!item) return null;
+export const GetAlertLayout = (item: NotificationAlertItem, onClose: () => void) => {
+    if (!item) return null;
 
-    const props = { key: item.id, item, onClose };
+    const { id, ...otherProps } = item;
 
-    switch(item.alertType)
-    {
+    switch (item.alertType) {
         case NotificationAlertType.NITRO:
-            return <NitroSystemAlertView { ...props } />
+            return <NitroSystemAlertView key={id} item={item} onClose={onClose} />;
         case NotificationAlertType.SEARCH:
-            return <NotificationSeachAlertView { ...props } />
+            return <NotificationSeachAlertView key={id} item={item} onClose={onClose} />;
         default:
-            return <NotificationDefaultAlertView { ...props } />
+            return <NotificationDefaultAlertView key={id} item={item} onClose={onClose} />;
     }
 }
