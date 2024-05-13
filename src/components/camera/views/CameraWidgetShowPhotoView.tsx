@@ -66,10 +66,15 @@ export const CameraWidgetShowPhotoView: FC<CameraWidgetShowPhotoViewProps> = pro
                 <Text variant="light">{ new Date(currentImage.t * 1000).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }) }</Text>
             </Flex>
             <Flex position="absolute" className="bottom-2 end-2 px-2 profile-container">
-				<Text className="nitro-friends-spritesheet icon-profile" pointer onClick={() => GetUserProfile(Number(getUserData(currentImage.s, Number(currentImage.u), 'id')))} />
-				<Text className="username" onClick={() => GetUserProfile(Number(getUserData(currentImage.s, Number(currentImage.u), 'id')))}>
-				{getUserData(currentImage.s, Number(currentImage.u), 'username')}</Text>
-			</Flex>
+            { getUserData(currentImage.s, Number(currentImage.u), 'username') && (
+                <>
+                    <Text className="nitro-friends-spritesheet icon-profile" pointer onClick={() => GetUserProfile(Number(getUserData(currentImage.s, Number(currentImage.u), 'id')))} />
+                    <Text className="username" onClick={() => GetUserProfile(Number(getUserData(currentImage.s, Number(currentImage.u), 'id')))}>
+                        { getUserData(currentImage.s, Number(currentImage.u), 'username') }
+                    </Text>
+                </>
+            )}
+        </Flex>
             { (currentPhotos.length > 1) &&
                 <>
                     <Flex position="absolute" className="start-2 center-buttons">
