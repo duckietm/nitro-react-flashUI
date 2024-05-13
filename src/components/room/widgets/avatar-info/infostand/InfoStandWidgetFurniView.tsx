@@ -38,6 +38,7 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
     const [ songId, setSongId ] = useState<number>(-1);
     const [ songName, setSongName ] = useState<string>('');
     const [ songCreator, setSongCreator ] = useState<string>('');
+	const [ itemLocation, setItemLocation ] = useState<{ x: number; y: number; z: number; }>({ x: -1, y: -1, z: -1 });
 
     useSoundEvent<NowPlayingEvent>(NowPlayingEvent.NPE_SONG_CHANGED, event =>
     {
@@ -74,6 +75,12 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
         let furniIsJukebox = false;
         let furniIsSongDisk = false;
         let furniSongId = -1;
+		
+		const roomObject = GetRoomEngine().getRoomObject( roomSession.roomId, avatarInfo.id, avatarInfo.isWallItem ? RoomObjectCategory.WALL : RoomObjectCategory.FLOOR );
+		const location = roomObject.getLocation();
+		if (location) {
+			setItemLocation({ x: location.x, y: location.y, z: location.z, });
+		}
 
         const isValidController = (avatarInfo.roomControllerLevel >= RoomControllerLevel.GUEST);
 
@@ -406,10 +413,18 @@ export const InfoStandWidgetFurniView: FC<InfoStandWidgetFurniViewProps> = props
                                     <Text variant="white" underline>{ groupName }</Text>
                                 </Flex>
                             </> }
+							<>
+								<hr className="m-0" />
+								<Text small wrap variant="white">
+								X = {itemLocation.x}  and  Y = {itemLocation.y}<br />
+								BuildHeight = {itemLocation.z < 0.01 ? 0 : itemLocation.z}<br />
+								{ canSeeFurniId && <Text wrap variant="white"> Room Furnishing ID: { avatarInfo.id }</Text> }
+							</Text>
+							</>
+							{itemLocation.x > -1}
                         { godMode &&
                             <>
                                 <hr className="m-0" />
-                                { canSeeFurniId && <Text wrap variant="white">ID: { avatarInfo.id }</Text> }
                                 { (furniKeys.length > 0) &&
                                     <>
                                         <hr className="m-0"/>
