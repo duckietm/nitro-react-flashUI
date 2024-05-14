@@ -873,6 +873,18 @@
         width: 34px;
         height: 38px;
     }
+	
+	&.icon-chat-enablebubble {
+        background: url('@/assets/images/icons/enablebubble.png');
+        width: 17px;
+        height: 21px;
+    }
+
+    &.icon-chat-disablebubble {
+        background: url('@/assets/images/icons/disablebubble.png');
+        width: 17px;
+        height: 21px;
+    }
 
     &.icon-search_save {
         background-image: url('@/assets/flash/navigator/saves-search/search_save.png');

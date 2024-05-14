@@ -74,3 +74,10 @@ yarn build:prod
 
 -   A `dist` folder will be generated, these are the files that must be uploaded to your webserver
 -   Consult your CMS documentation for compatibility with Nitro and how to add the production files
+
+
+# Custom Changes
+Make the following changes
+	- ExternalTesxts.json
+	`"room.mute.button.text": "Hide chat",`
+	`"room.unmute.button.text": "Unhide chat",`
