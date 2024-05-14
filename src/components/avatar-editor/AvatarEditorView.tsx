@@ -261,10 +261,9 @@ export const AvatarEditorView: FC<{}> = props =>
     {
         if(!isVisible || !isInitalized || !needsReset) return;
 
-        if (!genderFootballGate) loadAvatarInEditor(GetSessionDataManager().figure, GetSessionDataManager().gender);
-        if (genderFootballGate) loadAvatarInEditor(genderFootballGate === FigureData.MALE ? DEFAULT_MALE_FOOTBALL_GATE : DEFAULT_FEMALE_FOOTBALL_GATE, genderFootballGate);
+        loadAvatarInEditor(!genderFootballGate ? GetSessionDataManager().figure : (genderFootballGate === FigureData.MALE ? DEFAULT_MALE_FOOTBALL_GATE : DEFAULT_FEMALE_FOOTBALL_GATE), !genderFootballGate ? GetSessionDataManager().gender : genderFootballGate);
         setNeedsReset(false);
-    }, [ isVisible, isInitalized, needsReset, loadAvatarInEditor, genderFootballGate, DEFAULT_MALE_FOOTBALL_GATE, DEFAULT_FEMALE_FOOTBALL_GATE ]);
+    }, [ isVisible, isInitalized, needsReset, loadAvatarInEditor, genderFootballGate ]);
 
     useEffect(() => // This is so when you have the look editor open and you change the mode to Boy or Girl
     {
@@ -316,7 +315,7 @@ export const AvatarEditorView: FC<{}> = props =>
                 <Grid>
                     <Column size={ isWardrobeVisible ? 6 : 8 } overflow="hidden">
                         { (activeCategory) &&
-                            <AvatarEditorModelView model={ activeCategory } gender={ figureData.gender } setGender={ setGender } /> 
+                            <AvatarEditorModelView model={ activeCategory } gender={ figureData.gender } isFromFootballGate={ !genderFootballGate ? false : true } setGender={ setGender } />
                         }
                     </Column>
                     <Column size={ isWardrobeVisible ? 6 : 4 } overflow="hidden">

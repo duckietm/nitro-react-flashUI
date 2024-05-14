@@ -23,10 +23,10 @@ export const FurnitureFootballGateView: FC<{}> = props =>
                     <Column>{ LocalizeText('widget.furni.clothingchange.gender.info') }</Column>
                 </Flex>
                 <Flex className="mt-4 px-2" justifyContent="between">
-                    <Button className="volter-button size-buttons" onClick={ (e) => onGender(FigureData.MALE) }>
+                    <Button className="volter-button size-buttons text-black" onClick={ (e) => onGender(FigureData.MALE) }>
                         { LocalizeText('widget.furni.clothingchange.gender.male') }
                     </Button>
-                    <Button className="volter-button size-buttons" onClick={ (e) => onGender(FigureData.FEMALE) }>
+                    <Button className="volter-button size-buttons text-black" onClick={ (e) => onGender(FigureData.FEMALE) }>
                         { LocalizeText('widget.furni.clothingchange.gender.female') }
                     </Button>
                 </Flex>
