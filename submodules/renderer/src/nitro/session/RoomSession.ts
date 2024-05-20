@@ -114,14 +114,14 @@ export class RoomSession extends Disposable implements IRoomSession
         this._roomId = roomId;
     }
 
-    public sendChatMessage(text: string, styleId: number, chatColour: string): void
+    public sendChatMessage(text: string, styleId: number): void
     {
-        this._connection.send(new RoomUnitChatComposer(text, styleId, chatColour));
+        this._connection.send(new RoomUnitChatComposer(text, styleId));
     }
 
-    public sendShoutMessage(text: string, styleId: number, chatColour: string): void
+    public sendShoutMessage(text: string, styleId: number): void
     {
-        this._connection.send(new RoomUnitChatShoutComposer(text, styleId, chatColour));
+        this._connection.send(new RoomUnitChatShoutComposer(text, styleId));
     }
 
     public sendWhisperMessage(recipientName: string, text: string, styleId: number): void
@@ -170,11 +170,6 @@ export class RoomSession extends Disposable implements IRoomSession
     public sendAmbassadorAlertMessage(userId: number): void
     {
         this._connection.send(new RoomAmbassadorAlertComposer(userId));
-    }
-
-    public sendWhisperGroupMessage(userId: number): void
-    {
-        this._connection.send(new ChatWhisperGroupComposer(userId));
     }
 
     public sendKickMessage(userId: number): void

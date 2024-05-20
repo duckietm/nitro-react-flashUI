@@ -1,4 +1,4 @@
-# Nitro Renderer
+# ProHotel -  Nitro Renderer
 
 nitro-renderer is a Javascript library for rendering Nitro in the browser using PixiJS
 

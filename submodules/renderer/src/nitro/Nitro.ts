@@ -193,7 +193,7 @@ export class Nitro implements INitro
 
     private onConfigurationLoadedEvent(event: ConfigurationEvent): void
     {
-        GetTicker().maxFPS = NitroConfiguration.getValue<number>('system.fps.max', 24);
+        GetTicker().maxFPS = NitroConfiguration.getValue<number>('system.fps.max', 120);
 
         NitroLogger.LOG_DEBUG = NitroConfiguration.getValue<boolean>('system.log.debug', true);
         NitroLogger.LOG_WARN = NitroConfiguration.getValue<boolean>('system.log.warn', false);
