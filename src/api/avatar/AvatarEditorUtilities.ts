@@ -94,7 +94,10 @@ export class AvatarEditorUtilities
 
                     while(i < colorIds.length)
                     {
-                        if(partColor.id === colorIds[i]) partColors[i] = partColor;
+
+                        if(partColor.id == colorIds[i]){
+                            partColors[i] = partColor;
+                        }
 
                         i++;
                     }

@@ -76,7 +76,7 @@ export function generateRandomFigure(figureData: FigureData, gender: string, clu
 
         if(!selectedSet) continue;
 
-        let selectedColors: number[] = [];
+        let selectedColors: string[] = [];
 
         if(selectedSet.isColorable)
         {

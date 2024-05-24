@@ -1,4 +1,4 @@
-import { IPartColor } from '@nitrots/nitro-renderer';
+import { IPartColor, PartColor } from '@nitrots/nitro-renderer';
 import { AvatarEditorGridColorItem } from './AvatarEditorGridColorItem';
 import { AvatarEditorGridPartItem } from './AvatarEditorGridPartItem';
 
@@ -8,7 +8,7 @@ export class CategoryData
     private _parts: AvatarEditorGridPartItem[];
     private _palettes: AvatarEditorGridColorItem[][];
     private _selectedPartIndex: number = -1;
-    private _paletteIndexes: number[];
+    private _paletteIndexes: any[];
 
     constructor(name: string, partItems: AvatarEditorGridPartItem[], colorItems: AvatarEditorGridColorItem[][])
     {
@@ -18,7 +18,7 @@ export class CategoryData
         this._selectedPartIndex = -1;
     }
 
-    private static defaultColorId(palettes: AvatarEditorGridColorItem[], clubLevel: number): number
+    private static defaultColorId(palettes: AvatarEditorGridColorItem[], clubLevel: number): any
     {
         if(!palettes || !palettes.length) return -1;
 
@@ -90,7 +90,7 @@ export class CategoryData
         }
     }
 
-    public selectColorIds(colorIds: number[]): void
+    public selectColorIds(colorIds: any[]): void
     {
         if(!colorIds || !this._palettes) return;
 
@@ -104,7 +104,7 @@ export class CategoryData
 
             if(palette)
             {
-                let colorId = 0;
+                let colorId: any = 0;
 
                 if(colorIds.length > i)
                 {
@@ -123,7 +123,7 @@ export class CategoryData
                 {
                     const colorItem = palette[j];
 
-                    if(colorItem.partColor.id === colorId)
+                    if(colorItem.partColor.id == colorId)
                     {
                         this._paletteIndexes[i] = j;
 
@@ -172,25 +172,31 @@ export class CategoryData
         return null;
     }
 
-    public selectColorIndex(colorIndex: number, paletteId: number): AvatarEditorGridColorItem
+    public selectColorIndex(colorIndex: any, paletteId: number): AvatarEditorGridColorItem
     {
         const palette = this.getPalette(paletteId);
 
-        if(!palette) return null;
+        if(!palette){
+            return null;
+        } 
 
-        if(palette.length <= colorIndex) return null;
+        /*if(palette.length <= colorIndex){
+            return null;
+        }*/
 
         this.deselectColorIndex(this._paletteIndexes[paletteId], paletteId);
 
         this._paletteIndexes[paletteId] = colorIndex;
 
-        const colorItem = palette[colorIndex];
+        let colorItem = palette[colorIndex];
 
-        if(!colorItem) return null;
+        if(!colorItem){
+            colorItem = new AvatarEditorGridColorItem(new PartColor(null, colorIndex, paletteId), false)
+        } 
 
         colorItem.isSelected = true;
 
-        this.updatePartColors();
+        //this.updatePartColors();
 
         return colorItem;
     }
@@ -215,7 +221,7 @@ export class CategoryData
         colorItem.isSelected = false;
     }
 
-    public getSelectedColorIds(): number[]
+    public getSelectedColorIds(): any[]
     {
         if(!this._paletteIndexes || !this._paletteIndexes.length) return null;
 
@@ -230,7 +236,7 @@ export class CategoryData
         if(!colorItem || !colorItem.partColor) return null;
 
         const colorId = colorItem.partColor.id;
-        const colorIds: number[] = [];
+        const colorIds: any[] = [];
 
         let i = 0;
 
@@ -255,7 +261,7 @@ export class CategoryData
                 }
                 else
                 {
-                    colorIds.push(colorId);
+                    colorIds.push(this._paletteIndexes[i]);
                 }
             }
 
@@ -285,7 +291,16 @@ export class CategoryData
             }
             else
             {
-                partColors.push(null);
+                const color = new PartColor(null, this._paletteIndexes[i], i)
+
+                if(color)
+                {
+                    partColors.push(color);
+                }
+                else
+                {
+                    partColors.push(null);
+                }
             }
 
             i++;
@@ -303,13 +318,27 @@ export class CategoryData
         return palette[this._paletteIndexes[paletteId]];
     }
 
-    public getSelectedColorId(paletteId: number): number
+    public getSelectedColorId(paletteId: number): string
     {
         const colorItem = this.getSelectedColor(paletteId);
 
         if(colorItem && (colorItem.partColor)) return colorItem.partColor.id;
 
-        return 0;
+        return "0";
+    }
+
+    public getSelectedColorIdHex(paletteId: number): string
+    {
+        const colorItem = this.getSelectedColor(paletteId);
+
+        if(colorItem && (colorItem.partColor)){
+            return colorItem.partColor.hex;
+        }
+        else{
+            
+        }
+
+        return null;
     }
 
     public getPalette(paletteId: number): AvatarEditorGridColorItem[]
@@ -333,7 +362,9 @@ export class CategoryData
 
         for(const partItem of this._parts)
         {
-            if(partItem) partItem.partColors = partColors;
+            if(partItem){
+                partItem.partColors = partColors;
+            }
         }
     }
 
@@ -405,7 +436,7 @@ export class CategoryData
 
     public stripClubColorsOverLevel(level: number): boolean
     {
-        const colorIds: number[] = [];
+        const colorIds: any[] = [];
         const partColors = this.getSelectedColors();
         const colorItems = this.getPalette(0);
 

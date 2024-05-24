@@ -24,6 +24,12 @@ export class BodyModel extends CategoryBaseModel
         this.updateSelectionsFromFigure(FigureData.FACE);
     }
 
+    public selectColorHex(category: string, colorHex: string, paletteId: number): void
+    {
+        super.selectColorHex(category, colorHex, paletteId);
+    }
+
+
     protected updateSelectionsFromFigure(name: string): void
     {
         if(!this._categories || !AvatarEditorUtilities.CURRENT_FIGURE) return;

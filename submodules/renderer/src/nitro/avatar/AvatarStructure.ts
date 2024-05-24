@@ -6,7 +6,7 @@ import { Animation, AnimationManager, AvatarAnimationLayerData } from './animati
 import { AvatarImagePartContainer } from './AvatarImagePartContainer';
 import { AvatarRenderManager } from './AvatarRenderManager';
 import { AvatarModelGeometry } from './geometry';
-import { AnimationAction, AvatarAnimationData, AvatarAnimationFrame, AvatarCanvas, FigureSetData, PartSetsData } from './structure';
+import { AnimationAction, AvatarAnimationData, AvatarAnimationFrame, AvatarCanvas, FigureSetData, PartColor, PartSetsData } from './structure';
 
 export class AvatarStructure extends EventDispatcher
 {
@@ -432,6 +432,11 @@ export class AvatarStructure extends EventDispatcher
                                 if(_local_29 && (_local_29.length > (_local_33.colorLayerIndex - 1)))
                                 {
                                     _local_36 = _local_31.getColor(_local_29[(_local_33.colorLayerIndex - 1)]);
+									
+									if(!_local_36){
+                                        const id: any = _local_29[(_local_33.colorLayerIndex - 1)];
+                                        _local_36 = new PartColor(null, id, _local_33.colorLayerIndex);
+                                    }
                                 }
 
                                 const _local_37 = (_local_33.colorLayerIndex > 0);

@@ -26,7 +26,7 @@ export class FigureData
     public static SET_TYPES = [ FigureData.FACE, FigureData.HAIR, FigureData.HAT, FigureData.HEAD_ACCESSORIES, FigureData.EYE_ACCESSORIES, FigureData.FACE_ACCESSORIES, FigureData.JACKET, FigureData.SHIRT, FigureData.CHEST_ACCESSORIES, FigureData.CHEST_PRINTS, FigureData.TROUSERS, FigureData.SHOES, FigureData.TROUSERS ];
 
     private _data: Map<string, number>;
-    private _colors: Map<string, number[]>;
+    private _colors: Map<string, string[]>;
     private _gender: string = 'M';
     private _direction: number = FigureData.DEFAULT_DIRECTION;
     private _avatarEffectType: number = -1;
@@ -58,13 +58,13 @@ export class FigureData
 
             const setType = parts[0];
             const setId = parseInt(parts[1]);
-            const colorIds: number[] = [];
+            const colorIds: any[] = [];
 
             let offset = 2;
 
             while(offset < parts.length)
             {
-                colorIds.push(parseInt(parts[offset]));
+                colorIds.push(parts[offset]);
 
                 offset++;
             }
@@ -85,13 +85,15 @@ export class FigureData
         return -1;
     }
 
-    public getColorIds(setType: string): number[]
+    public getColorIds(setType: string): string[]
     {
         const existing = this._colors.get(setType);
 
-        if(existing !== undefined) return existing;
+        if(existing !== undefined){
+            return existing;
+        } 
 
-        return [ AvatarEditorUtilities.avatarSetFirstSelectableColor(setType) ];
+        return [ AvatarEditorUtilities.avatarSetFirstSelectableColor(setType).toLocaleString() ];
     }
 
     public getFigureString(): string
@@ -171,7 +173,7 @@ export class FigureData
         if(update) this.updateView();
     }
 
-    public savePartSetColourId(setType: string, colorIds: number[], update: boolean = true): void
+    public savePartSetColourId(setType: string, colorIds: any[], update: boolean = true): void
     {
         switch(setType)
         {

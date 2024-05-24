@@ -15,6 +15,7 @@ export class AvatarImagePartContainer
     private _isBlendable: boolean;
     private _blendTransform: AdjustmentFilter;
     private _paletteMapId: number;
+	private _colorHex: any;
 
     constructor(bodyPartId: string, partType: string, partId: string, partColor: IPartColor, frames: AvatarAnimationFrame[], action: IActionDefinition, isColorable: boolean, paletteMapId: number, flippedPartType: string = '', isBlendable: boolean = false, _arg_11: number = 1)
     {

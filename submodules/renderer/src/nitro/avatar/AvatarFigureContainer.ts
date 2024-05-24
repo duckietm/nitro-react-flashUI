@@ -39,7 +39,7 @@ export class AvatarFigureContainer implements IAvatarFigureContainer
         return existing.get('colorids');
     }
 
-    public updatePart(setType: string, partSetId: number, colorIds: number[]): void
+    public updatePart(setType: string, partSetId: number, colorIds: string[]): void
     {
         const set: Map<string, any> = new Map();
 
@@ -104,7 +104,7 @@ export class AvatarFigureContainer implements IAvatarFigureContainer
 
                 while(index < pieces.length)
                 {
-                    colors.push(parseInt(pieces[index]));
+                    colors.push(pieces[index]);
 
                     index++;
                 }

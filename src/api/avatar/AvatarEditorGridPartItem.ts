@@ -1,4 +1,4 @@
-import { AvatarFigurePartType, IAvatarImageListener, IAvatarRenderManager, IFigurePart, IFigurePartSet, IGraphicAsset, IPartColor, NitroAlphaFilter, NitroContainer, NitroSprite, TextureUtils } from '@nitrots/nitro-renderer';
+import { AvatarFigurePartType, IAvatarImageListener, IAvatarRenderManager, IFigurePart, IFigurePartSet, IGraphicAsset, IPartColor, NitroAlphaFilter, NitroContainer, NitroSprite, PartColor, TextureUtils } from '@nitrots/nitro-renderer';
 import { GetAvatarRenderManager } from '../nitro';
 import { FigureData } from './FigureData';
 
@@ -172,9 +172,11 @@ export class AvatarEditorGridPartItem implements IAvatarImageListener
 
             if(this._useColors && (part.colorLayerIndex > 0))
             {
-                const color = this._partColors[(part.colorLayerIndex - 1)];
+                /*const color = this._partColors[(part.colorLayerIndex - 1)];
 
-                if(color) partColor = color;
+                if(color) partColor = color;*/
+
+                partColor = new PartColor(null, "FFFFFF", part.colorLayerIndex - 1);
             }
 
             const sprite = new NitroSprite(asset.texture);

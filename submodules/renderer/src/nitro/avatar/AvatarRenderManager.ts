@@ -137,20 +137,35 @@ export class AvatarRenderManager extends NitroManager implements IAvatarRenderMa
 
         if(defaultActions) this._structure.initActions(GetAssetManager(), defaultActions);
 
-        const url = NitroConfiguration.getValue<string>('avatar.actions.url');
-        fetch(url)
-            .then(response => response.json())
-            .then(data =>
+        const request = new XMLHttpRequest();
+
+        try
+        {
+            request.open('GET', NitroConfiguration.getValue<string>('avatar.actions.url'));
+
+            request.send();
+
+            request.onloadend = e =>
             {
                 if(!this._structure) return;
 
-                this._structure.updateActions(data);
+                this._structure.updateActions(JSON.parse(request.responseText));
 
                 this._actionsReady = true;
 
                 this.checkReady();
-            })
-            .catch(err => NitroLogger.error(err));
+            };
+
+            request.onerror = e =>
+            {
+                throw new Error('invalid_avatar_actions');
+            };
+        }
+
+        catch (e)
+        {
+            NitroLogger.error(e);
+        }
     }
 
     private loadAnimations(): void
@@ -291,7 +306,7 @@ export class AvatarRenderManager extends NitroManager implements IAvatarRenderMa
 
                     if(figurePartSet)
                     {
-                        container.updatePart(id, figurePartSet.id, [0]);
+                        container.updatePart(id, figurePartSet.id, ["0"]);
 
                         isValid = true;
                     }
@@ -310,7 +325,7 @@ export class AvatarRenderManager extends NitroManager implements IAvatarRenderMa
 
                             if(partSet)
                             {
-                                container.updatePart(id, partSet.id, [0]);
+                                container.updatePart(id, partSet.id, ["0"]);
 
                                 isValid = true;
                             }

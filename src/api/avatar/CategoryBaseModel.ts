@@ -210,6 +210,19 @@ export class CategoryBaseModel implements IAvatarEditorCategoryModel
         AvatarEditorUtilities.CURRENT_FIGURE.savePartSetColourId(category, categoryData.getSelectedColorIds(), true);
     }
 
+    public selectColorHex(category: string, colorHex: string, paletteId: number): void
+    {
+        const categoryData = this._categories.get(category);
+
+        if(!categoryData) return;
+        
+        const testSave: string = colorHex.replace("#", "");
+
+        categoryData.selectColorIndex(testSave, paletteId);
+        
+        AvatarEditorUtilities.CURRENT_FIGURE.savePartSetColourId(category, categoryData.getSelectedColorIds(), true);
+    }
+
     public getCategoryData(category: string): CategoryData
     {
         if(!this._isInitalized) this.init();
