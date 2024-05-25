@@ -1,5 +1,6 @@
 import { IAvatarFigureContainer, SaveWardrobeOutfitMessageComposer } from '@nitrots/nitro-renderer';
 import { Dispatch, FC, SetStateAction, useCallback, useMemo } from 'react';
+import { MdSave, MdAccessibility } from 'react-icons/md';
 import { FigureData, GetAvatarRenderManager, GetClubMemberLevel, GetConfiguration, LocalizeText, SendMessageComposer } from '../../../api';
 import { AutoGrid, Base, Button, Flex, LayoutAvatarImageView, LayoutCurrencyIcon, LayoutGridItem } from '../../../common';
 
@@ -60,9 +61,9 @@ export const AvatarEditorWardrobeView: FC<AvatarEditorWardrobeViewProps> = props
                     <Base className="avatar-shadow" />
                     { !hcDisabled && (clubLevel > 0) && <LayoutCurrencyIcon className="position-absolute top-1 start-1" type="hc" /> }
                     <Flex gap={ 1 } className="button-container">
-                        <Button variant="link" fullWidth onClick={ event => saveFigureAtWardrobeIndex(index) }>{ LocalizeText('avatareditor.wardrobe.save') }</Button>
+                        <Button variant="link, white" fullWidth title={ LocalizeText('avatareditor.wardrobe.save') } onClick={ event => saveFigureAtWardrobeIndex(index) }><MdSave/> </Button>
                         { figureContainer &&
-                        <Button variant="link" fullWidth onClick={ event => wearFigureAtIndex(index) }>{ LocalizeText('generic_usable.button.use') }</Button> }
+                        <Button variant="link, white" fullWidth title={ LocalizeText('avatareditor.wardrobe.wear') } onClick={ event => wearFigureAtIndex(index) }><MdAccessibility/></Button> }
                     </Flex>
                 </LayoutGridItem>
             );
