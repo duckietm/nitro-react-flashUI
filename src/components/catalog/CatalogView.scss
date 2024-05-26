@@ -1,9 +1,6 @@
 .nitro-catalog {
     width: $catalog-width;
     height: $catalog-height;
-    min-width: $catalog-width;
-    max-width: $catalog-width;
-    min-height: $catalog-height - 39px;
 
     font[size='16'] {
         font-size: 20px;
@@ -85,7 +82,7 @@
     }
 
     .item-not-picker {
-        width: calc(100% - 216px);
+        width: 64%;
         max-height: 30px;
         min-height: 30px;   
     }

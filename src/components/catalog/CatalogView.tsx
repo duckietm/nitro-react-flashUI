@@ -70,7 +70,7 @@ export const CatalogView: FC<{}> = props =>
     return (
         <>
             { isVisible &&
-                <NitroCardView uniqueKey="catalog" className="nitro-catalog" style={ GetConfiguration('catalog.headers') ? { width: 710 } : {} }>
+                <NitroCardView uniqueKey="catalog" className="nitro-catalog" style={ GetConfiguration('catalog.headers') ? { width: 750 } : {} }>
                     <NitroCardHeaderView headerText={ LocalizeText('catalog.title') } onCloseClick={ event => setIsVisible(false) } />
                     <NitroCardTabsView subClassName="w-100">
                         { rootNode && (rootNode.children.length > 0) && rootNode.children.map((child, index) =>
@@ -88,7 +88,7 @@ export const CatalogView: FC<{}> = props =>
                                 } } >
                                     <Flex gap={ GetConfiguration('catalog.tab.icons') ? 1 : 0 } alignItems="center">
                                         { GetConfiguration('catalog.tab.icons') && <CatalogIconView icon={ child.iconId } /> }
-                                        { child.localization }
+                                        <span style={{ fontSize: '12px' }}>{child.localization}</span>
                                     </Flex>
                                 </NitroCardTabsItemView>
                             );
