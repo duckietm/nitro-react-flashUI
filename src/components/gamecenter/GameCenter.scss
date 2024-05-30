@@ -1,0 +1,142 @@
+.nitro-game-interface {
+    z-index: 1024;
+    display: inline-block;
+    pointer-events: all;
+
+    .left-side {
+        position: absolute;
+        top: 0;
+        margin: 1rem;
+    }
+
+    .right-side {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 1rem;
+    }
+
+    .center-side {
+        position: absolute;
+        z-index: 1024;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(3px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bg-layer-0 {
+        background-color: rgb(23 23 23 / 50%);
+        padding: 1rem;
+        border-radius: 0.25rem;
+        z-index: 5;
+        backdrop-filter: blur(100px);
+
+        hr {
+            width: 100%;
+            color: #FFF;
+            background-color: #FFF;
+            margin: 0.5rem 0;
+            opacity: 0.25;
+        }
+    }
+
+    .min-height {
+        min-height: 150px;
+    }
+
+    .player-list {
+
+        transition: top 0.2s ease 0s;
+
+        div.player {
+            animation: flasher 1s;
+        }
+
+        div.player:not(:last-child) {
+            border-bottom: 1px solid rgb(80 80 80 / 30%);
+            padding-bottom: 0.5rem;
+        }
+
+        div:nth-child(1) {
+
+            .score {
+                font-size: 1.953rem;
+            }
+
+        }
+
+        div:nth-child(2) {
+
+            .score {
+                font-size: 1.563rem;
+            }
+
+        }
+
+        div:nth-child(3) {
+
+            .score {
+                font-size: 1.25rem;
+            }
+
+        }
+
+        .avatar-image {
+            width: 42px;
+            height: 42px;
+            background-position: center -32px;
+            background-color: rgb(255 255 255 / 5%);
+            border-radius: $border-radius;
+        }
+
+    }
+
+    .img-stand {
+        background: url("https://cdn.discordapp.com/attachments/888286259850653737/1052346621146435674/download_3.png");
+        width: 130px;
+        height: 84px;
+
+        .avatar-image {
+            width: 42px;
+            height: 92px;
+            background-position: center -32px;
+            position: absolute;
+        } 
+
+        div:nth-child(1) {
+            top: -66px;
+            right: 46px;
+        }
+
+        div:nth-child(2) {
+            top: -38px;
+            right: 77px;
+        }
+
+        div:nth-child(3) {
+            top: -26px;
+            right: 14px;
+        }
+
+    }
+    
+}
+
+@keyframes flasher {
+    from {
+        transform: translate(0, 10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}

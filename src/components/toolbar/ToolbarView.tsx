@@ -82,7 +82,7 @@ export const ToolbarView: FC<{ isInRoom: boolean }> = props =>
                             { !isInRoom &&
                             <Base pointer className="navigation-item icon icon-house" title={ LocalizeText('toolbar.icon.tooltip.exitroom.home') } onClick={ event => CreateLinkEvent('navigator/goto/home') } /> }
                             <Base pointer className="navigation-item icon icon-rooms" title={ LocalizeText('toolbar.icon.label.navigator') } onClick={ event => CreateLinkEvent('navigator/toggle') } />
-                            { GetConfiguration('game.center.enabled') && <Base pointer className="navigation-item icon icon-game" title={ LocalizeText('toolbar.icon.label.games') } onClick={ event => CreateLinkEvent('games/toggle') } /> }
+                            { GetConfiguration('game.center.enabled') && <Base pointer className="navigation-item icon icon-game" title={ LocalizeText('toolbar.icon.label.games') } onClick={event => CreateLinkEvent('gamecenter/show')} /> }
                         </Flex> }
                         <Base pointer className="navigation-item icon icon-catalog" title={ LocalizeText('tooltip.shop') } onClick={ event => CreateLinkEvent('catalog/toggle') } />
                         <Base pointer className="navigation-item icon icon-inventory" title={ LocalizeText('toolbar.icon.label.inventory') } onClick={ event => CreateLinkEvent('inventory/toggle') }>
