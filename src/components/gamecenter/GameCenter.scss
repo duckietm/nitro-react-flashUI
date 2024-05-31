@@ -129,6 +129,50 @@
     
 }
 
+.waiting-header {
+    text-align: center;
+    color: #343a40;
+    margin-top: 0.5rem;
+
+    b {
+        display: inline-block;
+
+        .waiting-img {
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+            vertical-align: middle;
+            display: inline-block;
+            background: url('@/assets/images/gamecenter/progressbubbles.gif') no-repeat center center;
+            background-size: contain;
+        }
+    }
+}
+
+.avatar-position {
+    position: relative;
+    top: -8px;
+}
+
+.avatar-waiting {
+    text-align: center;
+    background-color: rgba(189, 200, 208, 1);
+    padding: 32px;
+    border-radius: 10px;
+    position: relative;
+
+    .avatar-image {
+        width: 35px;
+        height: 46px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: url('@/assets/images/gamecenter/defaultavatar.png') no-repeat center center;
+        background-size: contain;
+    }
+}
+
 @keyframes flasher {
     from {
         transform: translate(0, 10px);
