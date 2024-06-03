@@ -12,6 +12,7 @@ interface GameVotationInterfaceProps {
 export const GameVotationInterfaceView = (props: GameVotationInterfaceProps) => {
     const [isVisible, setIsVisible] = useState(true); // Default visibility to true
     const [hasVoted, setHasVoted] = useState(false);
+    const [isVoting, setIsVoting] = useState(false); // State to handle voting status
 
     useEffect(() => {
         if (!hasVoted) {
@@ -22,9 +23,11 @@ export const GameVotationInterfaceView = (props: GameVotationInterfaceProps) => 
     }, [hasVoted]);
 
     const handleVote = (votationNumber) => {
-        if (!hasVoted) {
+        if (!hasVoted && !isVoting) { // Check if the user has already voted or if a vote is in progress
+            setIsVoting(true); // Set voting in progress
             props.vote(props.id, votationNumber); // Ensure this sends the correct participantId
             setHasVoted(true);
+            setIsVoting(false); // Reset voting status
         }
     };
 
@@ -32,7 +35,7 @@ export const GameVotationInterfaceView = (props: GameVotationInterfaceProps) => 
         <>
             {isVisible && (
                 <NitroCardView style={{ width: "400px", height: "330px" }}>
-                    <NitroCardHeaderView headerText="Abstimmung" onCloseClick={() => setIsVisible(false)} />
+                    <NitroCardHeaderView headerText="Poll" onCloseClick={() => setIsVisible(false)} />
                     <NitroCardContentView>
                         <div className='alert bg-dark text-white mb-0'>
                             <Row>
@@ -40,24 +43,24 @@ export const GameVotationInterfaceView = (props: GameVotationInterfaceProps) => 
                                     <LayoutAvatarImageView style={{ position: "absolute", marginLeft: "-28px", marginTop: "-38px" }} figure={props.figure} headOnly={true} direction={2} />
                                 </Col>
                                 <Col md={9}>
-                                    <Text variant="white" bold>Raum erstellt von {props.username}</Text>
+                                    <Text variant="white" bold>Space created by {props.username}</Text>
                                 </Col>
                             </Row>
                         </div>
-                        <button onClick={() => handleVote(5)} className='btn w-100' style={{ backgroundColor: "#e163e6" }}>
-                            Ich liebe
+                        <button onClick={() => handleVote(5)} className='btn w-100' style={{ backgroundColor: "#e163e6" }} disabled={isVoting}>
+                            I Love it
                         </button>
-                        <button onClick={() => handleVote(4)} className='btn w-100' style={{ backgroundColor: "#63e674" }}>
-                            Schön
+                        <button onClick={() => handleVote(4)} className='btn w-100' style={{ backgroundColor: "#63e674" }} disabled={isVoting}>
+                            Very good
                         </button>
-                        <button onClick={() => handleVote(3)} className='btn w-100' style={{ backgroundColor: "#63c7e6" }}>
+                        <button onClick={() => handleVote(3)} className='btn w-100' style={{ backgroundColor: "#63c7e6" }} disabled={isVoting}>
                             OK
                         </button>
-                        <button onClick={() => handleVote(2)} className='btn w-100' style={{ backgroundColor: "#c7a52a" }}>
-                            Könnte besser sein
+                        <button onClick={() => handleVote(2)} className='btn w-100' style={{ backgroundColor: "#c7a52a" }} disabled={isVoting}>
+                            Have seen better
                         </button>
-                        <button onClick={() => handleVote(1)} className='btn w-100' style={{ backgroundColor: "#c72a2a" }}>
-                            Hässlich
+                        <button onClick={() => handleVote(1)} className='btn w-100' style={{ backgroundColor: "#c72a2a" }} disabled={isVoting}>
+                            Very bad
                         </button>
                     </NitroCardContentView>
                 </NitroCardView>
