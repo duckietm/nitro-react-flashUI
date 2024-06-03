@@ -1,14 +1,13 @@
 import { ILinkEventTracker } from '@nitrots/nitro-renderer';
 import { FC, useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
-import { AddEventLinkTracker, RemoveLinkEventTracker } from '../../../../api';
+import { AddEventLinkTracker, LocalizeText, RemoveLinkEventTracker } from '../../../../api';
 import { Base, Button, Flex, LayoutAvatarImageView, Text } from '../../../../common';
 import useWindowSize from '../../../../hooks/communicator/useWindowSize';
 import { useIsPlaying } from '../../../../hooks/game-center';
 
 export const GameWinInterface: FC<{}> = props =>
 {
-    //
     const { winners = null } = useIsPlaying();
     const { width, height } = useWindowSize();
     const [ isVisible, setIsVisible ] = useState(false);
@@ -51,7 +50,7 @@ export const GameWinInterface: FC<{}> = props =>
                         <Base className="center-side overlay">
                             <Flex className="bg-layer-0" column gap={ 2 }>
                                 <Base className="">
-                                    <Text variant="white" bold className="score">Ganador</Text>
+                                    <Text variant="white" bold className="score">{LocalizeText('gamecenter.players.winner')}</Text>
                                 </Base>
                                 <Flex gap={ 3 } className="min-height">
                                     <Flex alignItems="end">
@@ -69,7 +68,7 @@ export const GameWinInterface: FC<{}> = props =>
                                                     <LayoutAvatarImageView figure={ player.figure } direction={ 2 } />
                                                     <Flex column>
                                                         <Text variant="white" bold>{ player.username }</Text>
-                                                        <Text variant="white" small>Puntuación: { player.score }</Text>
+                                                        <Text variant="white" small>{LocalizeText('gamecenter.players.score')} { player.score }</Text>
                                                     </Flex>
                                                 </Flex>
                                             )) }

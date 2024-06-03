@@ -163,8 +163,8 @@ export const MainView: FC<{}> = props =>
             <CampaignView />
             <FloorplanEditorView />
 			<YoutubeTvView />
-			<GameCenter />
-            <GameInterface />
+			<GameCenter sendPacket={sendPacket} />
+            <GameInterface sendPacket={sendPacket} />
         </Base>
     );
 }

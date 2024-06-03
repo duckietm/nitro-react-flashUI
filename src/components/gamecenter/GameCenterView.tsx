@@ -6,10 +6,11 @@ import { NitroCardContentView, NitroCardHeaderView, NitroCardView } from '../../
 import { JoinGameComposer } from '../../packets/GameCenter/JoinGameComposer';
 import { JoinGameCenterComposer } from '../../packets/GameCenterCompass/JoinGameCenterComposer';
 
-export const GameCenterView: FC<{}> = props =>
+export const GameCenterView: FC<DefaultWebsocketInterface> = props =>
 {
     const sso = new URLSearchParams(window.location.search).get('sso');
     const [ isVisible, setIsVisible ] = useState(false)
+	const [isLookingSnowStorm, setIsLookingSnowStorm] = useState(false);																	
     const [ isLookingAmongUs, setIsLookingAmongUs] = useState(false);
     const [ isLookingTombRunner, setIsLookingTombRunner] = useState(false);
     const [ isLookingFlappyBirds, setIsLookingFlappyBirds] = useState(false);
@@ -34,21 +35,24 @@ export const GameCenterView: FC<{}> = props =>
       }, [lastMessage, setMessageHistory]);
 
     function joinGame(gameName: string){
-        sendMessage(JSON.stringify(new JoinGameComposer(gameName)));
+        props.sendPacket(new JoinGameComposer(gameName))
     }
 
     const joinGameCenter = (type: string) => 
     {
         CreateLinkEvent('gamecenterqueue/show/'+type);
-        sendMessage(JSON.stringify(new JoinGameCenterComposer(type)));
+        props.sendPacket(new JoinGameCenterComposer(type))
         setIsVisible(false);
     }
 
     useEffect(() => {
        if(!isVisible){
-        setIsLookingAmongUs(false);
-        setIsLookingTombRunner(false);
-        setIsLookingFlappyBirds(false);
+        setIsLookingSnowStorm(false);
+		setIsLookingAmongUs(false);
+		setIsLookingTombRunner(false);
+		setIsLookingFlappyBirds(false);
+		setIsLookingHamburger(false);
+		setIsLookingBattleBuild(false);
        } 
     }, [isVisible]);
     

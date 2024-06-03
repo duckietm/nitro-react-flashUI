@@ -9,7 +9,7 @@ import { ExitQueueComposer } from '../../packets/GameCenter/ExitQueueComposer';
 import { ExitGameCenterComposer } from '../../packets/GameCenterCompass/ExitGameCenterComposer';
 import GameCenterQueuePlayer from './GameCenterQueuePlayer';
 
-export const GameCenterQueue: FC<{}> = props =>
+export const GameCenterQueue: FC<DefaultWebsocketInterface> = props =>
 {
     const [ isVisible, setIsVisible ] = useState(false)
     const user = useSessionInfo();
@@ -31,7 +31,7 @@ export const GameCenterQueue: FC<{}> = props =>
                 setCount(message.data.playerCount);
 
                 var playersData = JSON.parse(message.data.players);
-                console.log(playersData);
+
                 setPlayers(playersData);
             }
 
@@ -67,8 +67,8 @@ export const GameCenterQueue: FC<{}> = props =>
     }, [isVisible]);
 
     const cancelMatch = () => {
-        if(isCompassGameCenter) sendMessage(JSON.stringify(new ExitGameCenterComposer()));
-        else sendMessage(JSON.stringify(new ExitQueueComposer("amongus")));
+        if(isCompassGameCenter) props.sendPacket(new ExitGameCenterComposer())
+        else props.sendPacket(new ExitQueueComposer("amongus"))
         setCount(0);
         setPlayers([]);
         setIsVisible(false);
