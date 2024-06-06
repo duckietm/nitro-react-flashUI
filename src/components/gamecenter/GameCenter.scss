@@ -198,6 +198,15 @@
   cursor: pointer;
 }
 
+.game-center-image-battlebanzai {
+  background: url('@/assets/images/gamecenter/battlebanzai.png') no-repeat center center;
+  height: 150px;
+  background-size: cover;
+  border-radius: 20px;
+  border: 3px solid #fff;
+  cursor: pointer;
+}
+
 .game-center-image-amongus {
   background: url('@/assets/images/gamecenter/amongus.png') no-repeat center center;
   height: 150px;
@@ -253,6 +262,152 @@
     width: 100%;
     height: 0;
     padding-bottom: 100%
+}
+
+.icon-timer {
+    width: 36px;
+    height: 36px;
+    background-image: url("@/assets/images/battleball/timer_default.png");
+    background-repeat: no-repeat;
+}
+
+.icon-timer-cooldown {
+    width: 22px;
+    height: 36px;
+
+    &.cooldown-10{
+        width: 36px;
+        background-image: url("@/assets/images/battleball/timer_10.png");
+        background-repeat: no-repeat;
+    }
+
+    &.cooldown-9{
+        background-image: url("@/assets/images/battleball/timer_9.png");
+        background-repeat: no-repeat;
+    }
+
+    &.cooldown-8{
+        background-image: url("@/assets/images/battleball/timer_8.png");
+        background-repeat: no-repeat;
+    }
+
+    &.cooldown-7{
+        background-image: url("@/assets/images/battleball/timer_7.png");
+        background-repeat: no-repeat;
+    }
+
+    &.cooldown-6{
+        background-image: url("@/assets/images/battleball/timer_6.png");
+        background-repeat: no-repeat;
+    }
+
+    &.cooldown-5{
+        background-image: url("@/assets/images/battleball/timer_5.png");
+        background-repeat: no-repeat;
+    }
+
+    &.cooldown-4{
+        background-image: url("@/assets/images/battleball/timer_4.png");
+        background-repeat: no-repeat;
+    }
+
+    &.cooldown-3{
+        background-image: url("@/assets/images/battleball/timer_3.png");
+        background-repeat: no-repeat;
+    }
+
+    &.cooldown-2{
+        background-image: url("@/assets/images/battleball/timer_2.png");
+        background-repeat: no-repeat;
+    }
+
+    &.cooldown-1{
+        background-image: url("@/assets/images/battleball/timer_1.png");
+        background-repeat: no-repeat;
+    }
+
+    &.cooldown-0{
+        background-image: url("@/assets/images/battleball/timer_0.png");
+        background-repeat: no-repeat;
+    }
+}
+
+.icon-pow{
+    width: 36px;
+    height: 36px;
+
+    &.icon-boom{
+        width: 22px;
+        height: 34px;
+
+        background-image: url("@/assets/images/battleball/Battle_bomb.png");
+        background-repeat: no-repeat;
+    }
+
+    &.icon-cannon{
+        width: 34px;
+        height: 34px;
+
+        background-image: url("@/assets/images/battleball/Canon.png");
+        background-repeat: no-repeat;
+    }
+
+    &.icon-sprin{
+        width: 15px;
+        height: 34px;
+
+        background-image: url("@/assets/images/battleball/Spring.png");
+        background-repeat: no-repeat;
+    }
+
+    &.icon-drill{
+        width: 20px;
+        height: 36px;
+
+        background-image: url("@/assets/images/battleball/Power_drill.png");
+        background-repeat: no-repeat;
+    }
+
+    &.icon-flash{
+        width: 33px;
+        height: 24px;
+
+        background-image: url("@/assets/images/battleball/Flashlight.png");
+        background-repeat: no-repeat;
+    }
+
+    &.icon-bulb{
+        width: 24px;
+        height: 41px;
+
+        background-image: url("@/assets/images/battleball/Lightbulb.png");
+        background-repeat: no-repeat;
+    }
+
+    &.icon-pins{
+        width: 32px;
+        height: 33px;
+
+        background-image: url("@/assets/images/battleball/Box_of_pins.png");
+        background-repeat: no-repeat;
+    }
+
+    &.icon-random{
+        width: 24px;
+        height: 33px;
+
+        background-image: url("@/assets/images/battleball/pwrup_qm.gif");
+        background-repeat: no-repeat;
+    }
+
+    &.icon-harle{
+        width: 23px;
+        height: 33px;
+        
+        background-image: url("@/assets/images/battleball/harle.png");
+        background-repeat: no-repeat;
+    }
+
 }
 
 @keyframes flasher {

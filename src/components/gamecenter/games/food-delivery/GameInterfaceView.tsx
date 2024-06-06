@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ILinkEventTracker } from '@nitrots/nitro-renderer';
 import { FC, useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
@@ -174,12 +173,12 @@ export const GameInterfaceView: FC<DefaultWebsocketInterface> = props => {
                                 </Flex>
                                 {battleBallPower != null && battleBallPower.name != "null" &&
                                     <Flex className="bg-layer-0 small" gap={3} alignItems='center'>
-                                        <Button style={{ width: "50px", height: "45px" }}>
+                                        <Button style={{ width: "60px", height: "45px" }}>
                                             <div className={`${battleBallPower.time != null && battleBallPower.time <= 10 ? `icon-timer-cooldown cooldown-${battleBallPower.time}` : "icon-timer"} `} />
-                                        </Button>
-                                        <FontAwesomeIcon icon="chevron-right" />
-                                        <Button style={{ width: "50px", height: "45px" }} onClick={() => props.sendPacket(new ActiveSkillComposer())}>
-                                            <div className={`icon-pow icon-${battleBallPower.name}`} />
+										</Button>
+               
+                                        <Button style={{ width: "60px", height: "45px" }} onClick={() => props.sendPacket(new ActiveSkillComposer())}>
+											<div className={`icon-pow icon-${battleBallPower.name}`} />
                                         </Button>
                                     </Flex>
                                 }
