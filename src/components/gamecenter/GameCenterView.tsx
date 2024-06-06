@@ -87,7 +87,7 @@ export const GameCenterView: FC<DefaultWebsocketInterface> = props =>
         <>
             {isVisible && (
                 <NitroCardView style={{ width: "500px" }}>
-                    <NitroCardHeaderView headerText="Centro de juegos" onCloseClick={event => setIsVisible(false)} />
+                    <NitroCardHeaderView headerText="Gamecenter" onCloseClick={event => setIsVisible(false)} />
                     <NitroCardContentView>
                         <div className='row mt-2'>
                             <div className='col-md-4 mb-2'>
@@ -106,12 +106,12 @@ export const GameCenterView: FC<DefaultWebsocketInterface> = props =>
                                     className='w-100 game-center-image-battlebuild'
                                 ></div>
                             </div>
-                            <div className='col-md-4 mb-2'>
+							<div className='col-md-4 mb-2'>
                                 <div
-                                    onClick={() => joinGame("amongus")}
-                                    onMouseEnter={() => setIsLookingAmongUs(true)}
-                                    onMouseLeave={() => setIsLookingAmongUs(false)}
-                                    className='w-100 game-center-image-amongus'
+									onClick={() => joinGameCenter("battleball")}
+									onMouseEnter={() => setIsLookingAmongUs(true)}
+									onMouseLeave={() => setIsLookingAmongUs(false)} 
+									className='w-100 game-center-image-battlebanzai'
                                 ></div>
                             </div>
                             <div className='col-md-4 mb-2'>
@@ -135,11 +135,11 @@ export const GameCenterView: FC<DefaultWebsocketInterface> = props =>
                         {isLookingAmongUs && (
                             <div className='row mt-2'>
                                 <div className='col-md-8 text-dark'>
-                                    <h2><b>AMONG US</b></h2>
+                                    <h2><b>BATTLE BALL</b></h2>
                                     <div style={{ marginTop: "-10px" }}>
-                                        <span className='badge bg-primary text-white'>{LocalizeText('gamecenter.players.4to12')}</span>
+                                        <span className='badge bg-primary text-white'>{LocalizeText('gamecenter.players.2to8')}</span>
                                     </div>
-                                    <br />{LocalizeText('gamecenter.amongus.description')}
+                                    <br />{LocalizeText('gamecenter.battleball.description')}
                                 </div>
                                 <div className='col-md-4'>
                                     <div className='game-center-image-amongus-image'></div>
