@@ -13,9 +13,6 @@
     "dependencies": {
         "@nitrots/nitro-renderer": "file:submodules/renderer",
         "@tanstack/react-virtual": "^3.0.0-beta.60",
-        "@fortawesome/fontawesome-svg-core": "^6.3.0",
-        "@fortawesome/free-solid-svg-icons": "^6.3.0",
-        "@fortawesome/react-fontawesome": "^0.2.2",
         "react": "^18.2.0",
         "react-bootstrap": "^2.7.2",
         "react-color-palette": "7.1.1",
