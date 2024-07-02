@@ -1,7 +1,7 @@
 import { FindNewFriendsMessageComposer, MouseEventType } from '@nitrots/nitro-renderer';
 import { FC, useEffect, useRef, useState } from 'react';
 import { GetUserProfile, LocalizeText, MessengerFriend, OpenMessengerChat, SendMessageComposer } from '../../../../api';
-import { Base, Button, LayoutAvatarImageView, LayoutBadgeImageView } from '../../../../common';
+import { Base, Button, LayoutAvatarImageView } from '../../../../common';
 import { useFriends } from '../../../../hooks';
 
 export const FriendBarItemView: FC<{ friend: MessengerFriend }> = props =>
@@ -49,16 +49,11 @@ export const FriendBarItemView: FC<{ friend: MessengerFriend }> = props =>
     return (
         <div ref={ elementRef } className={ 'btn find-friends-active friend-bar-item ' + (isVisible ? 'friend-bar-item-active' : '') } onClick={ event => setVisible(prevValue => !prevValue) }>
             <div className={ `friend-bar-item-head position-absolute ${ friend.id > 0 ? 'avatar': 'group' }` }>
-				<LayoutAvatarImageView 
-					headOnly={true}
-					figure={
-						friend.id > 0 ?
-						friend.figure : friend.id <= 0 &&
-						friend.figure === 'ADM' ?
-						'ha-3409-1413-70.lg-285-89.ch-3032-1334-109.sh-3016-110.hd-185-1359.ca-3225-110-62.wa-3264-62-62.fa-1206-90.hr-3322-1403' : friend.figure
-					} 
-				isgroup={friend.id <= 0 ? 1 : 0} direction={friend.id > 0 ? 2 : 3} />
-			</div>
+				{ (friend.id > 0) && <LayoutAvatarImageView headOnly={ !isVisible } figure={ friend.figure } direction={ isVisible ? 2 : 3 } /> }
+                { (friend.id <= 0) && <LayoutAvatarImageView headOnly={ !isVisible } figure={
+                    (friend.id <= 0 && friend.figure === 'ADM') ? 'ha-3409-1413-70.lg-285-89.ch-3032-1334-109.sh-3016-110.hd-185-1359.ca-3225-110-62.wa-3264-62-62.fa-1206-90.hr-3322-1403' : friend.figure
+                    } isgroup={friend.id <= 0 ? 1 : 0} direction={isVisible ? 2 : 3} /> }
+            </div>
             <div className="friend-bar-text">{ friend.name }</div>
             { isVisible &&
             <div className="d-flex pt-3 justify-content-between">

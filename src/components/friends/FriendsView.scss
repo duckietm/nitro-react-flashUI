@@ -179,7 +179,7 @@
         position: relative;
         padding-left:38px;
         text-align: left;
-        min-height: 36px;
+        pointer-events: all;
 
         &.friend-bar-item-active {
             margin-bottom: 26px;
@@ -202,7 +202,7 @@
             border-image-slice:17 17 17 17 fill;
             border-image-width:17px 17px 17px 17px;
             border-image-repeat:repeat repeat;
-            min-height: 36px;
+            min-height: 42px;
 
             &:hover {
                 border-image-source: url(@/assets/images/toolbar/friend-bg-hover.png);
@@ -220,20 +220,27 @@
         .friend-bar-text {
             overflow: hidden;
             text-overflow: ellipsis;
-        //    white-space: nowrap;
             font-size: 13px;
             line-height: 1;
             color: #fff;
         }
+		
+		.font-size-friend {
+				font-size: 12px;
+			}
+		
+		.avatar-image {
+                max-height: 85px;
+            }
 
         .friend-bar-item-head {
             &.avatar {
-                top: -31px;
-                left: -23px;
+                top: -26px;
+                left: -25px;
             }
             &.group {
-                top: -31px;
-                left: -23px;
+                top: -26px;
+                left: -25px;
             }
 
             pointer-events: none;
@@ -241,13 +248,12 @@
 
         &.friend-bar-search {
             .friend-bar-item-head {
-                top: -2px;
-                left: 6px;
+                top: -6px;
+                left: 5px;
                 width: 31px;
                 height: 34px;
                 background-image: url('@/assets/images/toolbar/friend-search.png');
             }
-			
 			&.friend-bar-item-active {
                 margin-bottom: 146px;
             }
