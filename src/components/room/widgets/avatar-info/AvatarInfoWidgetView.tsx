@@ -26,15 +26,15 @@ export const AvatarInfoWidgetView: FC<{}> = props =>
     const [ isGameMode, setGameMode ] = useState(false);
     const [ isDancing, setIsDancing ] = useState(false);
     const [ rentableBotChatEvent, setRentableBotChatEvent ] = useState<RoomWidgetUpdateRentableBotChatEvent>(null);
-    const { avatarInfo = null, setAvatarInfo = null, activeNameBubble = null, setActiveNameBubble = null, nameBubbles = [], removeNameBubble = null, productBubbles = [], confirmingProduct = null, updateConfirmingProduct = null, removeProductBubble = null, isDecorating = false, setIsDecorating = null } = useAvatarInfoWidget();
-    const { roomSession = null } = useRoom();
+    const { avatarInfo, setAvatarInfo, activeNameBubble, setActiveNameBubble, nameBubbles, removeNameBubble, productBubbles, confirmingProduct, updateConfirmingProduct, removeProductBubble, isDecorating, setIsDecorating } = useAvatarInfoWidget();
+    const { roomSession } = useRoom();
 
-    useRoomEngineEvent<RoomEngineEvent>(RoomEngineEvent.NORMAL_MODE, event =>
+    useRoomEngineEvent<RoomEngineEvent>(RoomEngineEvent.NORMAL_MODE, () =>
     {
         if(isGameMode) setGameMode(false);
     });
 
-    useRoomEngineEvent<RoomEngineEvent>(RoomEngineEvent.GAME_MODE, event =>
+    useRoomEngineEvent<RoomEngineEvent>(RoomEngineEvent.GAME_MODE, () =>
     {
         if(!isGameMode) setGameMode(true);
     });
@@ -46,7 +46,7 @@ export const AvatarInfoWidgetView: FC<{}> = props =>
         setIsDancing((event.danceId !== 0));
     });
 
-    useUiEvent<RoomWidgetUpdateRentableBotChatEvent>(RoomWidgetUpdateRentableBotChatEvent.UPDATE_CHAT, event => setRentableBotChatEvent(event));
+    useUiEvent<RoomWidgetUpdateRentableBotChatEvent>(RoomWidgetUpdateRentableBotChatEvent.UPDATE_CHAT, setRentableBotChatEvent);
 
     const getMenuView = () =>
     {
